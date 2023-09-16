@@ -81,7 +81,7 @@ def signup_command():
     frame = Frame(window, width=350, height=390, bg='#fff')
     frame.place(x=480, y=50)
 
-    heading = Label(frame, text='Sign in', fg='#57a1f8', bg='white', font=('Microsoft Yahei UI Light', 23, 'bold'))
+    heading = Label(frame, text='Sign up', fg='#57a1f8', bg='white', font=('Microsoft Yahei UI Light', 23, 'bold'))
     heading.place(x=100, y=5)
 
     ##################------------#####################
@@ -103,34 +103,40 @@ def signup_command():
 
     ################------------------##################
 
-    def on_enter(e):
+    def on_enter_code(e, code):
         code.delete(0, 'end')
+        code.config(show='*')
 
-    def on_leave(e):
+    def on_leave_code(e, code):
         if code.get() == '':
             code.insert(0, 'Password')
+            code.config(show='')
 
     code = Entry(frame, width=25, fg='black', border=0, bg="white", font=('Microsoft Yahei UI Light', 11))
     code.place(x=30, y=150)
     code.insert(0, 'Password')
-    code.bind('<FocusIn>', on_enter)
-    code.bind('<FocusOut>', on_leave)
+    code.config(show='')
+    code.bind('<FocusIn>', lambda e: on_enter_code(e, code))
+    code.bind('<FocusOut>', lambda e: on_leave_code(e, code))
     Frame(frame, width=295, height=2, bg='black').place(x=25, y=177)
 
     ################------------------##################
 
-    def on_enter(e):
+    def on_enter_confirm(e, confirm_code):
         confirm_code.delete(0, 'end')
+        confirm_code.config(show='*')
 
-    def on_leave(e):
+    def on_leave_confirm(e, confirm_code):
         if confirm_code.get() == '':
-            confirm_code.insert(0, 'Confirm Password')
+            confirm_code.insert(0, 'Confirm password')
+            confirm_code.config(show='')
 
     confirm_code = Entry(frame, width=25, fg='black', border=0, bg="white", font=('Microsoft Yahei UI Light', 11))
     confirm_code.place(x=30, y=220)
     confirm_code.insert(0, 'Confirm password')
-    confirm_code.bind('<FocusIn>', on_enter)
-    confirm_code.bind('<FocusOut>', on_leave)
+    confirm_code.config(show='')
+    confirm_code.bind('<FocusIn>', lambda e: on_enter_confirm(e, confirm_code))
+    confirm_code.bind('<FocusOut>', lambda e: on_leave_confirm(e, confirm_code))
     Frame(frame, width=295, height=2, bg='black').place(x=25, y=247)
 
     ###----------------------------
@@ -173,19 +179,23 @@ Frame(frame,width=295,height=2,bg='black').place(x=25,y=107)
 
 ###################################
 
-def on_enter(e):
-    code.delete(0,'end')
-def on_leave(e):
-    name=code.get()
-    if name=='':
-        code.insert(0,'Password')
+def on_enter(e, code):
+    code.delete(0, 'end')
+    code.config(show='*')
 
-code = Entry(frame,width=25,fg='black',border=0,bg="white",font=('Microsoft Yahei UI Light',11))
-code.place(x=30,y=150)
-code.insert(0,'Password')
-code.bind('<FocusIn>',on_enter)
-code.bind('<FocusOut>',on_leave)
-Frame(frame,width=295,height=2,bg='black').place(x=25,y=177)
+def on_leave(e, code):
+    name = code.get()
+    if name == '':
+        code.insert(0, 'Password')
+        code.config(show='')
+
+code = Entry(frame, width=25, fg='black', border=0, bg="white", font=('Microsoft Yahei UI Light', 11))
+code.place(x=30, y=150)
+code.insert(0, 'Password')
+code.config(show='')
+code.bind('<FocusIn>', lambda e: on_enter(e, code))
+code.bind('<FocusOut>', lambda e: on_leave(e, code))
+Frame(frame, width=295, height=2, bg='black').place(x=25, y=177)
 
 
 #################################################

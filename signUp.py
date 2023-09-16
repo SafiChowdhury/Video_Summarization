@@ -47,7 +47,7 @@ Label(window,image=img,border=0,bg='white').place(x=50,y=90)
 frame= Frame(window,width=350,height=390,bg='#fff')
 frame.place(x=480,y=50)
 
-heading= Label(frame,text='Sign in',fg = '#57a1f8',bg='white',font=('Microsoft Yahei UI Light',23,'bold'))
+heading= Label(frame,text='Sign up',fg = '#57a1f8',bg='white',font=('Microsoft Yahei UI Light',23,'bold'))
 heading.place(x=100,y=5)
 
 ##################------------#####################
