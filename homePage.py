@@ -103,12 +103,13 @@ def signup_command():
 
     ################------------------##################
 
-    def on_enter_code(e, code):
+    def on_enter(e, code):
         code.delete(0, 'end')
         code.config(show='*')
 
-    def on_leave_code(e, code):
-        if code.get() == '':
+    def on_leave(e, code):
+        name = code.get()
+        if name == '':
             code.insert(0, 'Password')
             code.config(show='')
 
@@ -116,17 +117,17 @@ def signup_command():
     code.place(x=30, y=150)
     code.insert(0, 'Password')
     code.config(show='')
-    code.bind('<FocusIn>', lambda e: on_enter_code(e, code))
-    code.bind('<FocusOut>', lambda e: on_leave_code(e, code))
+    code.bind('<FocusIn>', lambda e: on_enter(e, code))
+    code.bind('<FocusOut>', lambda e: on_leave(e, code))
     Frame(frame, width=295, height=2, bg='black').place(x=25, y=177)
 
     ################------------------##################
 
-    def on_enter_confirm(e, confirm_code):
+    def on_enter(e, confirm_code):
         confirm_code.delete(0, 'end')
         confirm_code.config(show='*')
 
-    def on_leave_confirm(e, confirm_code):
+    def on_leave(e, confirm_code):
         if confirm_code.get() == '':
             confirm_code.insert(0, 'Confirm password')
             confirm_code.config(show='')
@@ -135,8 +136,8 @@ def signup_command():
     confirm_code.place(x=30, y=220)
     confirm_code.insert(0, 'Confirm password')
     confirm_code.config(show='')
-    confirm_code.bind('<FocusIn>', lambda e: on_enter_confirm(e, confirm_code))
-    confirm_code.bind('<FocusOut>', lambda e: on_leave_confirm(e, confirm_code))
+    confirm_code.bind('<FocusIn>', lambda e: on_enter(e, confirm_code))
+    confirm_code.bind('<FocusOut>', lambda e: on_leave(e, confirm_code))
     Frame(frame, width=295, height=2, bg='black').place(x=25, y=247)
 
     ###----------------------------
